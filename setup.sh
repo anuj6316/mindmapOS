@@ -1,23 +1,17 @@
-# 1. Create / ensure directory exists
-sudo install -d -m 0755 /opt/agentos
+AGENTOS_DIR="/opt/agentos"
 
-# 2. Overwrite script atomically with correct perms
-sudo install -m 0755 agentos/agentd.py /opt/agentos/agentd.py
+# Check if directory exists
+if [ -d "$AGENTOS_DIR" ]; then
+    echo "Directory '$AGENTOS_DIR' exists. Deleting the Directory"
+    rm -rf "$AGENTOS_DIR" || { echo "Failed to delete the directory."; exit 1; }
+    echo "Directory '$AGENTOS_DIR' deleted."
+fi
+echo "Directory '$AGENTOS_DIR' does not exist."
+mkdir -p "$AGENTOS_DIR" || { echo "Failed to create the directory."; exit 1; }
+echo "Directory '$AGENTOS_DIR' created."
+cp -rf "agentos/*" "$AGENTOS_DIR" || { echo "Failed to copy the files."; exit 1; }
+echo "Files copied to '$AGENTOS_DIR'."
 
-# 3. Overwrite systemd unit file
-sudo install -m 0644 agentos/agentd.service /etc/systemd/system/agentd.service
-
-# 4. Reload systemd (pick up changes)
-sudo systemctl daemon-reload
-
-# 5. Restart service (handles already-running case)
-sudo systemctl restart agentd
-
-# 6. Verify status
-sudo systemctl status agentd
-
-# 7. Tail logs
-journalctl -u agentos/agentd -f
-
-# 8. Ensure enabled on boot
-sudo systemctl enable agentd
+# systemd dir
+SYSTEMD_DIR="/lib/systemd/system"
+cp -rf "system/*" "$SYSTEMD_DIR" || { echo "Failed to copy the directory."; exit 1; }
