@@ -1,26 +1,23 @@
-# 1. Create the directory for your project
-sudo mkdir -p /opt/agentos
+# 1. Create / ensure directory exists
+sudo install -d -m 0755 /opt/agentos
 
-# 2. Copy your script there
-sudo cp agentd.py /opt/agentos/agentd.py
+# 2. Overwrite script atomically with correct perms
+sudo install -m 0755 agentd.py /opt/agentos/agentd.py
 
-# 3. Make it executable
-sudo chmod +x /opt/agentos/agentd.py
+# 3. Overwrite systemd unit file
+sudo install -m 0644 agentd.service /etc/systemd/system/agentd.service
 
-# 4. Copy the service file to where systemd looks for unit files
-sudo cp agentd.service /etc/systemd/system/agentd.service
-
-# 5. Tell systemd to reload — it needs to see the new file
+# 4. Reload systemd (pick up changes)
 sudo systemctl daemon-reload
 
-# 6. Start the service
-sudo systemctl start agentd
+# 5. Restart service (handles already-running case)
+sudo systemctl restart agentd
 
-# 7. Check it's running
+# 6. Verify status
 sudo systemctl status agentd
 
-# 8. Watch the live logs
+# 7. Tail logs
 journalctl -u agentd -f
 
-# 9. Enable it to start on every boot
+# 8. Ensure enabled on boot
 sudo systemctl enable agentd
