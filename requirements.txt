@@ -9,3 +9,4 @@ langsmith
 
 poethepoet
 pyyaml
+dotenv

@@ -24,16 +24,24 @@ signal.signal(signal.SIGINT, handle_sigterm)
 
 log.info("agentd starting up")
 
-from langchain_ollama import ChatOllama
+from langchain_openai import ChatOpenai
+from dotenv import load_dotenv
 
-def call_llm(query: str):
-    llm = ChatOllama(model="gemma4:31b-cloud")
-    response = llm.invoke(query)
+load_dotenv()
+
+def test_llm():
+    llm = ChatOpenai(
+        base_url = "https://openrouter.ai/api/v1",
+        api_key = os.getenv("OPENROUTER_API_KEY"),
+        model = "google/gemma-4-26b-a4b-it"
+    )
+    response = llm.invoke("Echo the 'Gemma 4 26b Live...'")
     return response.content
 
 while running:
     log.info("Agentd is running...")
-    time.sleep(5)
+    # time.sleep(5)
+    log.info(test_llm())
 
 log.info("agentd exited cleanly")
 sys.exit(0)
