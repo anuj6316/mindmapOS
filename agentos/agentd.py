@@ -23,6 +23,13 @@ signal.signal(signal.SIGINT, handle_sigterm)
 
 log.info("agentd starting up")
 
+from langchain_ollama import ChatOllama
+
+def call_llm(query: str):
+    llm = ChatOllama(model="gemma4:31b-cloud")
+    response = llm.invoke(query)
+    return response.content
+
 while running:
     log.info("Agentd is running...")
     time.sleep(5)

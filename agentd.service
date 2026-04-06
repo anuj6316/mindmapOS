@@ -7,6 +7,9 @@ Wants=network-online.target
 Type=simple
 User=root
 
+# Where your script lives
+ExecStart=/usr/bin/python3 /opt/agentd/agentd.py
+
 Restart=on-failure
 RestartSec=5
 
