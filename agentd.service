@@ -8,7 +8,7 @@ Type=simple
 User=root
 
 # Where your script lives
-ExecStart=/usr/bin/python3 /opt/agentd/agentd.py
+ExecStart=/usr/bin/python3 /opt/agentos/agentd.py
 
 Restart=on-failure
 RestartSec=5
