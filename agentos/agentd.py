@@ -30,17 +30,22 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def test_llm():
-    llm = ChatOpenai(
-        base_url = "https://openrouter.ai/api/v1",
-        api_key = os.getenv("OPENROUTER_API_KEY"),
-        model = "google/gemma-4-26b-a4b-it"
-    )
-    response = llm.invoke("Echo the 'Gemma 4 26b Live...'")
-    return response.content
+    try:
+        llm = ChatOpenai(
+            base_url = "https://openrouter.ai/api/v1",
+            api_key = os.getenv("OPENROUTER_API_KEY"),
+            model = "google/gemma-4-26b-a4b-it"
+        )
+        response = llm.invoke("Echo the 'Gemma 4 26b Live...'")
+        log.info("Response generated")
+    except Exception as e:
+        log.error(f"Found some error: {e}")
+    return response
 
 while running:
     log.info("Agentd is running...")
     # time.sleep(5)
+    
     log.info(test_llm())
 
 log.info("agentd exited cleanly")
