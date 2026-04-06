@@ -23,7 +23,7 @@ cp -rf system/* "$SYSTEMD_DIR" || { echo "Failed to copy the directory."; exit 1
 sudo chmod +x "$AGENTOS_DIR"/*
 
 ## installing required libraries
-# sudo 
+pip install -r requirements.txt
 
 ## 4. tell systemd to reload - it needs to see the new files
 sudo systemctl daemon-reload
