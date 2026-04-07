@@ -38,9 +38,9 @@ def test_llm():
         )
         response = llm.invoke("Echo the 'Gemma 4 26b Live...'")
         log.info("Response generated")
+        return response
     except Exception as e:
         log.error(f"Found some error: {e}")
-    return response
 
 while running:
     log.info("Agentd is running...")
