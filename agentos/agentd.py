@@ -24,14 +24,14 @@ signal.signal(signal.SIGINT, handle_sigterm)
 
 log.info("agentd starting up")
 
-from langchain_openai import ChatOpenai
+from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
 
 load_dotenv()
 
 def test_llm():
     try:
-        llm = ChatOpenai(
+        llm = ChatOpenAI(
             base_url = "https://openrouter.ai/api/v1",
             api_key = os.getenv("OPENROUTER_API_KEY"),
             model = "google/gemma-4-26b-a4b-it"
