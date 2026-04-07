@@ -40,4 +40,5 @@ sudo systemctl status agentd
 ## 8. watch the live logs (Final blocking step)
 sudo journalctl -u agentd -f
 
-##
+## 9. run this service on every boot
+sudo systemctl enable agentd
