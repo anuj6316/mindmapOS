@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0047AB; /* MindMap Blue */
+  --color-secondary: #00A651; /* MindMap Green */
+  --color-on-primary: #ffffff;
+  
+  --color-surface: #ffffff; /* Light background */
+  --color-on-surface: #1e293b;
+  
+  --color-surface-container: #f8fafc;
+  --color-surface-container-low: #f1f5f9;
+  --color-surface-container-high: #e2e8f0;
+  --color-surface-container-lowest: #ffffff;
+  
+  --color-outline: rgba(0, 0, 0, 0.1);
+  --color-outline-variant: rgba(0, 0, 0, 0.05);
+  --color-muted: #64748b;
+
+  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+body {
+  @apply font-sans bg-surface text-on-surface antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-outline rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted/30;
+}
