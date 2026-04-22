@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
-import { Command, ArrowRight, Brain, Cloud, HardDrive, Cpu, Settings, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { Command, ArrowRight, Cloud, HardDrive, Cpu, Settings, ShieldCheck, CheckCircle2, ChevronDown, X, Key } from 'lucide-react';
 
 export default function SetupPage() {
   const [step, setStep] = useState(0);
@@ -9,6 +9,11 @@ export default function SetupPage() {
 
   // Settings State
   const [modelType, setModelType] = useState<'local' | 'cloud'>('local');
+  const [localModel, setLocalModel] = useState('llama3-8b');
+  const [cloudProvider, setCloudProvider] = useState('openai');
+  const [cloudApiKey, setCloudApiKey] = useState('');
+
+  const [isCloudModalOpen, setIsCloudModalOpen] = useState(false);
   const [expLevel, setExpLevel] = useState<'beginner' | 'advanced'>('beginner');
   const [autoStart, setAutoStart] = useState(true);
 
@@ -92,44 +97,109 @@ export default function SetupPage() {
                   <div className="space-y-6">
                     <p className="text-[14px] text-slate-500 mb-6">Choose how MindMapOS processes your requests. You can change this later.</p>
                     
-                    <button 
-                      onClick={() => setModelType('local')}
-                      className={`w-full text-left p-5 rounded-[24px] border-2 transition-all flex gap-4 items-start ${
+                    <div
+                      className={`w-full text-left p-5 rounded-[24px] border-2 transition-all flex flex-col gap-4 ${
                         modelType === 'local' ? 'border-sky-500 bg-sky-50/30 shadow-md shadow-sky-100' : 'border-slate-100 bg-white hover:border-slate-200'
                       }`}
                     >
-                      <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${modelType === 'local' ? 'bg-sky-100 text-sky-600' : 'bg-slate-100 text-slate-500'}`}>
-                        <HardDrive size={20} />
-                      </div>
-                      <div>
-                        <div className="font-semibold text-slate-800 text-[15px] mb-1 flex items-center gap-2">
-                          On-Device AI <span className="bg-emerald-100 text-emerald-700 text-[10px] uppercase font-bold px-2 py-0.5 rounded-full">Recommended</span>
+                      <button
+                        onClick={() => setModelType('local')}
+                        className="flex gap-4 items-start w-full text-left"
+                      >
+                        <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${modelType === 'local' ? 'bg-sky-100 text-sky-600' : 'bg-slate-100 text-slate-500'}`}>
+                          <HardDrive size={20} />
                         </div>
-                        <p className="text-[13px] text-slate-500 leading-relaxed mb-3">Runs entirely on your machine. 100% private. Requires ~5GB download and 8GB RAM.</p>
-                        <div className="flex items-center gap-4 text-[12px] font-medium text-slate-400">
-                          <span className="flex items-center gap-1.5"><Cpu size={14}/> Llama 3 8B</span>
-                          <span className="flex items-center gap-1.5"><CheckCircle2 size={14}/> Free forever</span>
+                        <div className="flex-1">
+                          <div className="font-semibold text-slate-800 text-[15px] mb-1 flex items-center gap-2">
+                            On-Device AI <span className="bg-emerald-100 text-emerald-700 text-[10px] uppercase font-bold px-2 py-0.5 rounded-full">Recommended</span>
+                          </div>
+                          <p className="text-[13px] text-slate-500 leading-relaxed mb-3">Runs entirely on your machine. 100% private. Requires ~5GB download and 8GB RAM.</p>
+                          <div className="flex items-center gap-4 text-[12px] font-medium text-slate-400">
+                            <span className="flex items-center gap-1.5"><Cpu size={14}/> 100% Private</span>
+                            <span className="flex items-center gap-1.5"><CheckCircle2 size={14}/> Free forever</span>
+                          </div>
                         </div>
-                      </div>
-                    </button>
+                      </button>
 
-                    <button 
-                      onClick={() => setModelType('cloud')}
-                      className={`w-full text-left p-5 rounded-[24px] border-2 transition-all flex gap-4 items-start ${
+                      <AnimatePresence>
+                        {modelType === 'local' && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden"
+                          >
+                            <div className="pt-4 border-t border-sky-200/50 mt-1">
+                              <label className="block text-[13px] font-medium text-slate-700 mb-2">Select Model</label>
+                              <div className="relative">
+                                <select
+                                  value={localModel}
+                                  onChange={(e) => setLocalModel(e.target.value)}
+                                  className="w-full appearance-none bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-[14px] text-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500/50"
+                                >
+                                  <option value="llama3-8b">Llama 3 8B (Recommended)</option>
+                                  <option value="mistral-7b">Mistral 7B</option>
+                                  <option value="qwen-2.5-coder-7b">Qwen 2.5 Coder 7B</option>
+                                </select>
+                                <ChevronDown size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+
+                    <div
+                      className={`w-full text-left p-5 rounded-[24px] border-2 transition-all flex flex-col gap-4 ${
                         modelType === 'cloud' ? 'border-sky-500 bg-sky-50/30 shadow-md shadow-sky-100' : 'border-slate-100 bg-white hover:border-slate-200'
                       }`}
                     >
-                      <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${modelType === 'cloud' ? 'bg-sky-100 text-sky-600' : 'bg-slate-100 text-slate-500'}`}>
-                        <Cloud size={20} />
-                      </div>
-                      <div>
-                        <div className="font-semibold text-slate-800 text-[15px] mb-1">Cloud AI (Bring your own API)</div>
-                        <p className="text-[13px] text-slate-500 leading-relaxed mb-3">Uses external APIs for processing. Fast, requires no local resources, but requires an API key.</p>
-                        <div className="flex items-center gap-2 text-[12px] font-medium text-slate-400">
-                          <span>Supports OpenAI, Anthropic, Gemini</span>
+                      <button
+                        onClick={() => {
+                          setModelType('cloud');
+                          if (!cloudApiKey) setIsCloudModalOpen(true);
+                        }}
+                        className="flex gap-4 items-start w-full text-left"
+                      >
+                        <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${modelType === 'cloud' ? 'bg-sky-100 text-sky-600' : 'bg-slate-100 text-slate-500'}`}>
+                          <Cloud size={20} />
                         </div>
-                      </div>
-                    </button>
+                        <div className="flex-1">
+                          <div className="font-semibold text-slate-800 text-[15px] mb-1">Cloud AI (Bring your own API)</div>
+                          <p className="text-[13px] text-slate-500 leading-relaxed mb-3">Uses external APIs for processing. Fast, requires no local resources, but requires an API key.</p>
+                          <div className="flex items-center gap-2 text-[12px] font-medium text-slate-400">
+                            <span>Supports OpenAI, Anthropic, Gemini</span>
+                          </div>
+                        </div>
+                      </button>
+
+                      <AnimatePresence>
+                        {modelType === 'cloud' && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden"
+                          >
+                            <div className="pt-4 border-t border-sky-200/50 mt-1 flex justify-between items-center">
+                              <div className="text-[13px] text-slate-600">
+                                {cloudApiKey ? (
+                                  <span className="flex items-center gap-1.5 text-emerald-600"><CheckCircle2 size={16} /> API Key Configured</span>
+                                ) : (
+                                  <span className="text-amber-600">Configuration Required</span>
+                                )}
+                              </div>
+                              <button
+                                onClick={() => setIsCloudModalOpen(true)}
+                                className="px-4 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 text-[13px] font-medium hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm"
+                              >
+                                {cloudApiKey ? 'Edit Configuration' : 'Configure'}
+                              </button>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
                   </div>
                 )}
 
@@ -238,6 +308,93 @@ export default function SetupPage() {
           </div>
         </div>
       </motion.div>
+
+      {/* Cloud Configuration Modal */}
+      <AnimatePresence>
+        {isCloudModalOpen && (
+          <div className="fixed inset-0 z-[70] flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="absolute inset-0 bg-slate-900/20 backdrop-blur-sm"
+              onClick={() => setIsCloudModalOpen(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="bg-white w-full max-w-md rounded-[24px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-slate-100 p-8 relative z-10"
+            >
+              <button
+                onClick={() => setIsCloudModalOpen(false)}
+                className="absolute top-6 right-6 text-slate-400 hover:text-slate-600 transition-colors"
+              >
+                <X size={20} />
+              </button>
+
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center">
+                  <Cloud size={20} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-slate-800 tracking-tight">Cloud Configuration</h3>
+                  <p className="text-[13px] text-slate-500">Set up your API provider credentials.</p>
+                </div>
+              </div>
+
+              <div className="space-y-5">
+                <div>
+                  <label className="block text-[13px] font-medium text-slate-700 mb-2">Provider</label>
+                  <div className="relative">
+                    <select
+                      value={cloudProvider}
+                      onChange={(e) => setCloudProvider(e.target.value)}
+                      className="w-full appearance-none bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-[14px] text-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500/50"
+                    >
+                      <option value="openai">OpenAI</option>
+                      <option value="anthropic">Anthropic</option>
+                      <option value="gemini">Google Gemini</option>
+                    </select>
+                    <ChevronDown size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-[13px] font-medium text-slate-700 mb-2">API Key</label>
+                  <div className="relative">
+                    <input
+                      type="password"
+                      value={cloudApiKey}
+                      onChange={(e) => setCloudApiKey(e.target.value)}
+                      placeholder="sk-..."
+                      className="w-full bg-white border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-[14px] text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500/50"
+                    />
+                    <Key size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-slate-100 flex justify-end gap-3">
+                <button
+                  onClick={() => setIsCloudModalOpen(false)}
+                  className="px-5 py-2.5 rounded-full text-[14px] font-medium text-slate-600 hover:bg-slate-50 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={() => setIsCloudModalOpen(false)}
+                  className="px-6 py-2.5 rounded-full bg-sky-500 hover:bg-sky-600 text-white font-medium text-[14px] transition-all hover:-translate-y-0.5 shadow-md shadow-sky-500/30"
+                >
+                  Save Configuration
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
