@@ -30,8 +30,8 @@ export default function Sidebar({ onNewChat, activeItem, isOpen, onToggle }: Sid
       {/* Brand Header */}
       <div className={`p-4 flex items-center ${isOpen ? 'justify-between' : 'justify-center border-b border-slate-200/50 pb-4'}`}>
         {isOpen && (
-          <div className="flex items-center gap-3 overflow-hidden px-1 py-1.5">
-            <span className="font-bold text-lg tracking-tight text-slate-800">MindMapOS</span>
+          <div className="flex items-center overflow-hidden px-1 py-1.5">
+            <img src="/brand_logo.png" alt="MindMapOS" className="h-6 w-auto" />
           </div>
         )}
         

@@ -4,6 +4,8 @@ import LandingPage from './pages/LandingPage';
 import DownloadPage from './pages/DownloadPage';
 import SetupPage from './pages/SetupPage';
 import MarketplacePage from './pages/MarketplacePage';
+import MindmapTechnical from './pages/mindmapos-technical';
+import DocsPage from './pages/DocsPage';
 
 export default function App() {
   return (
@@ -14,6 +16,8 @@ export default function App() {
         <Route path="/download" element={<DownloadPage />} />
         <Route path="/setup" element={<SetupPage />} />
         <Route path="/marketplace" element={<MarketplacePage />} />
+        <Route path="/technical" element={<MindmapTechnical />} />
+        <Route path="/docs" element={<DocsPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>

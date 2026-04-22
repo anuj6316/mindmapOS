@@ -7,7 +7,7 @@ export default function MobileHeader() {
         <button className="text-slate-600 hover:text-sky-600 transition-colors">
           <Menu size={20} />
         </button>
-        <span className="font-bold text-lg tracking-tight text-slate-800">MindMapOS</span>
+        <img src="/brand_logo.png" alt="MindMapOS" className="h-6 w-auto" />
       </div>
       <div className="flex items-center gap-2">
         <button className="text-slate-600 hover:text-sky-600 transition-colors">

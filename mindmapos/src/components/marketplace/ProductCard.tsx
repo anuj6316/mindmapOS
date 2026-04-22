@@ -1,7 +1,6 @@
 import React from 'react';
 import { Product } from '../../data/marketplaceData';
-import { Star, Download, ChevronRight, Plus } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Star, Download, Plus } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -13,15 +12,18 @@ export default function ProductCard({ product, onViewDetails, onAdd }: ProductCa
   const isFree = product.price.toLowerCase() === 'free';
 
   return (
-    <div className="group bg-white border border-slate-200/60 p-6 rounded-[32px] shadow-[0_10px_30px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-500 hover:-translate-y-1 flex flex-col h-full relative overflow-hidden">
+    <div 
+      onClick={() => onViewDetails(product)}
+      className="group bg-white border border-slate-200/60 p-7 rounded-[32px] shadow-sm hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1.5 flex flex-col h-full relative cursor-pointer"
+    >
       
       {/* Top Section */}
-      <div className="flex items-start justify-between mb-4">
-        <div className="h-14 w-14 rounded-2xl flex items-center justify-center border bg-slate-50 border-slate-100 text-2xl transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3 shrink-0">
+      <div className="flex items-start justify-between mb-6">
+        <div className="h-16 w-16 rounded-[20px] flex items-center justify-center border bg-slate-50 border-slate-100 text-3xl transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3 shrink-0">
           {product.icon}
         </div>
         {product.badge && (
-          <div className="text-[10px] md:text-[11px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 max-w-[140px] truncate text-right">
+          <div className="text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full bg-slate-50 text-slate-400 border border-slate-100">
             {product.badge.split('·')[0].trim()}
           </div>
         )}
@@ -29,41 +31,46 @@ export default function ProductCard({ product, onViewDetails, onAdd }: ProductCa
 
       {/* Content */}
       <div className="flex-1">
-        <h4 className="text-xl font-medium tracking-tight mb-1 text-slate-900">{product.name}</h4>
-        <p className="text-[13px] text-slate-500 mb-3">{product.category} · By {product.creator}</p>
-        <p className="text-[14px] font-light leading-relaxed text-slate-600 mb-4 line-clamp-2">
+        <div className="flex flex-col gap-1 mb-4">
+           <h4 className="text-xl font-semibold tracking-tight text-slate-900 group-hover:text-sky-600 transition-colors">{product.name}</h4>
+           <div className="flex items-center gap-2 text-[12px] font-medium text-slate-400">
+             <span>{product.creator}</span>
+             {product.processingType && (
+               <div className="flex items-center gap-1.5 ml-1 px-2 py-0.5 rounded-full bg-slate-50 border border-slate-100">
+                  <div className={`w-1.5 h-1.5 rounded-full ${product.processingType === 'Local-ok' ? 'bg-emerald-400' : 'bg-amber-400'}`} />
+                  <span className="text-[10px] uppercase tracking-wider">{product.processingType === 'Local-ok' ? 'Local' : 'Hybrid'}</span>
+               </div>
+             )}
+           </div>
+        </div>
+        
+        <p className="text-[15px] font-light leading-relaxed text-slate-500 mb-6 line-clamp-2">
           {product.tagline}
         </p>
       </div>
 
-      {/* Footer Stats */}
-      <div className="flex items-center gap-4 text-[13px] text-slate-500 mb-6 font-medium">
-        <div className="flex items-center gap-1 text-amber-500">
-          <Star size={14} fill="currentColor" />
-          <span>{product.rating}</span>
+      {/* Footer Stats & Primary Action */}
+      <div className="flex items-center justify-between pt-6 border-t border-slate-50">
+        <div className="flex items-center gap-4 text-[12px] text-slate-400 font-medium">
+          <div className="flex items-center gap-1.5">
+            <Star size={14} className="text-amber-400" fill="currentColor" />
+            <span>{product.rating}</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <Download size={14} />
+            <span>{product.installs >= 1000 ? `${(product.installs / 1000).toFixed(1)}k` : product.installs}</span>
+          </div>
         </div>
-        <div className="flex items-center gap-1">
-          <Download size={14} />
-          <span>{product.installs >= 1000 ? `${(product.installs / 1000).toFixed(1)}k` : product.installs}</span>
-        </div>
-        <div className="ml-auto font-semibold text-slate-900">
-          {isFree ? <span className="text-emerald-600">FREE</span> : product.price}
-        </div>
-      </div>
 
-      {/* Action Buttons */}
-      <div className="flex items-center gap-2 mt-auto">
         <button 
-          onClick={() => onViewDetails(product)}
-          className="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 text-slate-700 font-medium text-[14px] hover:bg-slate-50 hover:text-slate-900 transition-all flex items-center justify-center gap-1"
+          onClick={(e) => {
+            e.stopPropagation();
+            onAdd(product);
+          }}
+          className="px-5 py-2 rounded-xl bg-slate-900 text-white font-bold text-[12px] hover:bg-sky-500 transition-all flex items-center gap-2 shadow-lg shadow-slate-900/10 hover:shadow-sky-500/20"
         >
-          View Details
-        </button>
-        <button 
-          onClick={() => onAdd(product)}
-          className="flex-1 px-4 py-2.5 rounded-xl bg-sky-500 text-white font-medium text-[14px] hover:bg-sky-600 transition-all shadow-sky-500/20 hover:shadow-sky-500/40 hover:-translate-y-0.5 flex items-center justify-center gap-1"
-        >
-          <Plus size={16} /> {isFree ? 'Add' : 'Buy'}
+          {isFree ? <Plus size={14} /> : null}
+          {isFree ? 'GET' : product.price}
         </button>
       </div>
 

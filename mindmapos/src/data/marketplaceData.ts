@@ -1,6 +1,6 @@
 export type Platform = 'Linux' | 'Windows' | 'macOS' | 'Android' | 'iOS';
 
-export type Category = 'Models' | 'Agents' | 'Orchestrations' | 'Bundles';
+export type Category = 'Models' | 'Agents' | 'Orchestrations' | 'Bundles' | 'Developers';
 
 export interface Product {
   id: string;
@@ -27,6 +27,10 @@ export interface Product {
   requires?: string;
   configuration?: string[];
   included?: string[];
+  // Technical metadata from blueprint
+  processingType?: 'Local-ok' | 'Cloud-hybrid';
+  tools?: string[];
+  trigger?: string;
 }
 
 export const featuredBanners = [
@@ -226,6 +230,9 @@ export const marketplaceProducts: Product[] = [
     name: 'DevFlow Pro',
     tagline: 'Set up any dev environment in under 3 minutes.',
     creator: 'MindMapOS',
+    processingType: 'Local-ok',
+    trigger: 'CLI / UI Intent',
+    tools: ['git', 'npm', 'brew', 'env_vars', 'bash'],
     version: 'v2.3.1',
     price: 'FREE',
     installs: 12400,
@@ -283,6 +290,9 @@ export const marketplaceProducts: Product[] = [
     name: 'SysGuard',
     tagline: 'A security monitor that explains everything in plain language.',
     creator: 'MindMapOS',
+    processingType: 'Local-ok',
+    trigger: 'CLI / UI Intent',
+    tools: ['systemctl', 'lsof', 'ps', 'netstat'],
     version: 'v1.5.0',
     price: 'FREE',
     installs: 9200,
@@ -365,6 +375,9 @@ export const marketplaceProducts: Product[] = [
     name: 'NightWatch',
     tagline: 'Your device\'s security monitor. Always on. Always quiet.',
     creator: 'Community · Verified',
+    processingType: 'Cloud-hybrid',
+    trigger: 'Cron / File Watcher',
+    tools: ['auditd', 'inotify', 'aws_sns'],
     version: 'v2.0.0',
     price: 'FREE',
     installs: 5800,

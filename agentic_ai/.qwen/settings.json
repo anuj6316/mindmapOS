@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(do *)",
+      "Bash(python3 *)",
+      "Bash(done)",
+      "WebSearch",
+      "WebFetch(vallettasoftware.com)",
+      "WebFetch(www.appypieagents.ai)",
+      "WebFetch(productwithshambhavi.substack.com)",
+      "Bash(pandoc *)",
+      "Bash(python *)",
+      "Bash(true)",
+      "Bash(npx *)",
+      "Bash(agent-browser *)",
+      "Bash(rm *)"
+    ]
+  },
+  "$version": 3
+}

@@ -214,6 +214,30 @@ exit={{ opacity: 0, y: 10, scale: 0.95 }}
 transition={{ duration: 0.15 }}
 ```
 
+### Scroll-Triggered Animations (Technical Docs)
+Standard for all `/docs` sections and long-form pages.
+
+```tsx
+// Scroll reveal wrapper (shared component)
+initial={{ opacity: 0, y: 20 }}
+whileInView={{ opacity: 1, y: 0 }}
+viewport={{ once: true, margin: "-100px" }}
+transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+
+// Staggered list items
+transition={{ duration: 0.5, delay: i * 0.1 }}
+```
+
+### Counters & Stats
+Used for technical metrics and platform stats.
+
+```tsx
+// Animated counter logic (useSpring)
+const count = useSpring(0, { duration: 2000, bounce: 0 });
+// Trigger on view
+useEffect(() => { if (isInView) count.set(targetValue); }, [isInView]);
+```
+
 ### Tab / Content Switch Animation
 
 ```tsx
@@ -311,6 +335,32 @@ className="text-slate-600 hover:bg-sky-50 hover:text-sky-600"
     Supporting description text.
   </p>
 </div>
+```
+
+### Docs Section Layout
+Standard structure for `/docs` sections.
+
+```tsx
+<section id="section-id" className="py-24 border-b border-slate-100 last:border-0">
+  <div className="max-w-7xl mx-auto px-4 sm:px-8">
+    <SectionLabel number="01" label="Section Name" />
+    <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-slate-900 mb-8">
+      Main Heading
+    </h2>
+    <div className="grid lg:grid-cols-2 gap-12">
+      {/* Content */}
+    </div>
+  </div>
+</section>
+```
+
+### Technical Mono Badge
+For API endpoints, commands, or version numbers.
+
+```tsx
+<span className="inline-flex items-center px-2.5 py-0.5 rounded-md bg-slate-100 text-slate-700 font-mono text-[12px] border border-slate-200">
+  localhost:7800
+</span>
 ```
 
 ### Chat Message

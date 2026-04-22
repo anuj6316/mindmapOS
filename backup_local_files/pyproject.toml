@@ -1,0 +1,89 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mindmap-memory"
+version = "0.1.0"
+description = "Core memory engine for MindmapOS (vector + LLM pipelines)"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "Anuj Kumar" }
+]
+
+dependencies = [
+    "pydantic>=2",
+    "psycopg[binary]",
+    "pgvector",
+    "openai",
+    "typer",
+    "celery[redis]",
+    "pydantic-settings>=2.13.1",
+    "psycopg2-binary>=2.9.11",
+    "pyyaml>=6.0.3",
+    "dotenv>=0.9.9",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "ruff",
+    "mypy",
+]
+
+# CLI entrypoint (optional but recommended)
+[project.scripts]
+mindmap-memory = "mindmap_memory.cli:app"
+
+# Only package src/
+[tool.hatch.build.targets.wheel]
+packages = ["src/mindmap_memory"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/mindmap_memory",
+    "README.md",
+    "pyproject.toml"
+]
+
+# -----------------------
+# TOOLING CONFIG
+# -----------------------
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+fix = true
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+ignore_missing_imports = true
+warn_unused_ignores = true
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+# -----------------------
+# UV (optional but clean)
+# -----------------------
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "ruff",
+    "mypy",
+]

@@ -1,0 +1,151 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "id": "title-main",
+      "type": "text",
+      "x": 400,
+      "y": 0,
+      "width": 800,
+      "height": 50,
+      "text": "ACCESSIBLE AGENTIC AI: RESEARCH & ARCHITECTURE MAP",
+      "fontSize": 32,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "strokeColor": "#1e1e1e"
+    },
+    {
+      "id": "box-vision",
+      "type": "rectangle",
+      "x": 0,
+      "y": 100,
+      "width": 380,
+      "height": 450,
+      "strokeColor": "#2f9e44",
+      "backgroundColor": "#ebfbee",
+      "fillStyle": "hachure",
+      "strokeWidth": 2,
+      "roundness": { "type": 3 }
+    },
+    {
+      "id": "text-vision",
+      "type": "text",
+      "x": 20,
+      "y": 120,
+      "width": 340,
+      "height": 400,
+      "text": "SECTION 01: STRATEGIC VISION\n\n- GUARDIAN MODE DEFAULT: Immutable safety.\n- ACCESSIBILITY FIRST: 18pt font, voice primary.\n- COGNITIVE LOAD REDUCTION: One question/turn.\n- PERSONAS:\n  - MEENA (71): WhatsApp user, needs protection.\n  - RAJAN (44): Caregiver, needs audit visibility.\n  - DR. SHARMA: Provider, needs health summaries.",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "left"
+    },
+    {
+      "id": "box-arch",
+      "type": "rectangle",
+      "x": 410,
+      "y": 100,
+      "width": 460,
+      "height": 450,
+      "strokeColor": "#1971c2",
+      "backgroundColor": "#e7f5ff",
+      "fillStyle": "hachure",
+      "strokeWidth": 2,
+      "roundness": { "type": 3 }
+    },
+    {
+      "id": "text-arch",
+      "type": "text",
+      "x": 430,
+      "y": 120,
+      "width": 420,
+      "height": 400,
+      "text": "SECTION 02: 5-LAYER PIPELINE ARCHITECTURE\n\n1. INPUT: WhatsApp/Voice -> Scam Filter (Layer 1)\n2. GATEWAY: Private Cloud VPC (No Public Ports)\n3. AGENT CORE: Claude 4.6 (Sonnet) reasoning.\n4. ACTION LAYER: Lobster Deterministic Flows.\n5. EXTERNAL: Verified Health APIs / Caregiver Hub.\n\nHYBRID MODEL: Native Apps <-> Private Cloud Backend",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "left"
+    },
+    {
+      "id": "box-safety",
+      "type": "rectangle",
+      "x": 900,
+      "y": 100,
+      "width": 420,
+      "height": 450,
+      "strokeColor": "#e03131",
+      "backgroundColor": "#fff5f5",
+      "fillStyle": "hachure",
+      "strokeWidth": 2,
+      "roundness": { "type": 3 }
+    },
+    {
+      "id": "text-safety",
+      "type": "text",
+      "x": 920,
+      "y": 120,
+      "width": 380,
+      "height": 400,
+      "text": "SECTION 03: SAFETY & LOBSTER ENGINE\n\nHIGH-STAKES ACTION FLOW:\n1. User Request (Medication/Financial)\n2. LLM Intent Classification\n3. LOBSTER Workflow Activation (Typed YAML)\n4. APPROVAL GATE: Caregiver App push notification.\n5. EXECUTION: Only after human resumeToken.\n\nTHREAT MODEL: SCAM DETECTION FILTER\n- Financial urgency analysis\n- Impersonation signal checks\n- Automated Quarantine",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "left"
+    },
+    {
+      "id": "box-memory",
+      "type": "rectangle",
+      "x": 0,
+      "y": 580,
+      "width": 620,
+      "height": 320,
+      "strokeColor": "#f08c00",
+      "backgroundColor": "#fff9db",
+      "fillStyle": "hachure",
+      "strokeWidth": 2,
+      "roundness": { "type": 3 }
+    },
+    {
+      "id": "text-memory",
+      "type": "text",
+      "x": 20,
+      "y": 600,
+      "width": 580,
+      "height": 280,
+      "text": "SECTION 04: THREE-TIER MEMORY ARCHITECTURE\n\n1. HOT (LLM Context): <32K Tokens (Current session)\n2. WARM (Episodic): Qdrant Vector DB (Summarized history)\n3. COLD (Structured): Postgres (Medications, Contacts)\n\nCONTEXT ROT PREVENTION:\n- Hard Token Caps @ Gateway level.\n- Proactive Summarization via Claude Haiku.\n- 77% COST REDUCTION: From $16/user to ~$3.71/user.",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "left"
+    },
+    {
+      "id": "box-roadmap",
+      "type": "rectangle",
+      "x": 650,
+      "y": 580,
+      "width": 670,
+      "height": 320,
+      "strokeColor": "#099268",
+      "backgroundColor": "#e6fcf5",
+      "fillStyle": "hachure",
+      "strokeWidth": 2,
+      "roundness": { "type": 3 }
+    },
+    {
+      "id": "text-roadmap",
+      "type": "text",
+      "x": 670,
+      "y": 600,
+      "width": 630,
+      "height": 280,
+      "text": "SECTION 05: PHASED EXECUTION ROADMAP\n\nPHASE 1 (FOUNDATION): Guardian safety, Voice UI, 5 Workflows.\nPHASE 2 (EXPANSION): Healthcare APIs, Multilingual (Hindi, Tamil),\nABDM Compliance Proxy.\nPHASE 3 (ECOSYSTEM): Power User Tier, Signed Skill Registry,\nDeveloper SDK.\n\nSUCCESS METRIC: <$5 Monthly Cost | >94% Scam Recall.",
+      "fontSize": 16,
+      "fontFamily": 1,
+      "textAlign": "left"
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": 20
+  },
+  "files": {}
+}
