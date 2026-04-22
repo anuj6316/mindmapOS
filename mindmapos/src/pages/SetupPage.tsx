@@ -32,7 +32,7 @@ export default function SetupPage() {
     <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans flex flex-col items-center justify-center p-4 selection:bg-sky-100 selection:text-sky-900 overflow-hidden relative">
       {/* Ambient backgrounds */}
       <div className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] bg-sky-200/40 rounded-full blur-[120px] pointer-events-none mix-blend-multiply" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-blue-200/30 rounded-full blur-[120px] pointer-events-none mix-blend-multiply" />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-emerald-200/40 rounded-full blur-[120px] pointer-events-none mix-blend-multiply" />
 
       {/* Main Card */}
       <motion.div 

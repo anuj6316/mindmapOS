@@ -59,7 +59,7 @@ export default function LandingPage() {
 
       {/* Ambient Background Gradients (Glassmorphism blobs) */}
       <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-sky-200/50 rounded-full blur-[120px] pointer-events-none mix-blend-multiply" />
-      <div className="absolute top-[20%] right-[-10%] w-[40vw] h-[60vw] bg-blue-200/40 rounded-full blur-[120px] pointer-events-none mix-blend-multiply" />
+      <div className="absolute top-[20%] right-[-10%] w-[40vw] h-[60vw] bg-emerald-200/40 rounded-full blur-[120px] pointer-events-none mix-blend-multiply" />
       <div className="absolute bottom-[-10%] left-[20%] w-[60vw] h-[50vw] bg-sky-200/30 rounded-full blur-[120px] pointer-events-none mix-blend-multiply" />
 
       {/* Navigation */}
@@ -76,8 +76,8 @@ export default function LandingPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/60 backdrop-blur-sm border border-slate-200/50 text-sky-700 text-[11px] font-bold tracking-wider uppercase mb-8 shadow-sm">
-                <Sparkles size={14} /> Powered by MindMap AI
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/60 backdrop-blur-sm border border-slate-200/50 text-[#00A651] text-[11px] font-bold tracking-wider uppercase mb-8 shadow-sm">
+                <Sparkles size={14} className="text-[#00A651]" /> Powered by MindMap AI
               </div>
               
               <h1 className="text-[52px] md:text-[68px] font-medium tracking-[-0.03em] text-slate-900 mb-6 leading-[1.05]">

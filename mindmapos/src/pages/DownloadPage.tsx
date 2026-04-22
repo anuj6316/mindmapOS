@@ -623,7 +623,7 @@ export default function DownloadPage() {
   return (
     <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans selection:bg-sky-100 selection:text-sky-900 pb-32">
       <div className="fixed top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-sky-200/50 rounded-full blur-[120px] pointer-events-none mix-blend-multiply z-0 print:hidden" />
-      <div className="fixed top-[20%] right-[-10%] w-[40vw] h-[60vw] bg-blue-200/40 rounded-full blur-[120px] pointer-events-none mix-blend-multiply z-0 print:hidden" />
+      <div className="fixed top-[20%] right-[-10%] w-[40vw] h-[60vw] bg-emerald-200/40 rounded-full blur-[120px] pointer-events-none mix-blend-multiply z-0 print:hidden" />
       <div className="fixed bottom-[-10%] left-[20%] w-[60vw] h-[50vw] bg-sky-200/30 rounded-full blur-[120px] pointer-events-none mix-blend-multiply z-0 print:hidden" />
 
       <Navbar />

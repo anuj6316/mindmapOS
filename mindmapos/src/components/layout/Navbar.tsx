@@ -71,7 +71,7 @@ export default function Navbar({ showShare, onShare, isCopied }: NavbarProps) {
               >
                 {link.label}
                 {location.pathname === link.path && (
-                  <div className="absolute bottom-[-1px] left-1/2 -translate-x-1/2 w-3/4 h-[2.5px] bg-sky-500 rounded-full" />
+                  <div className="absolute bottom-[-1px] left-1/2 -translate-x-1/2 w-3/4 h-[2.5px] bg-[#00A651] rounded-full" />
                 )}
               </Link>
             );

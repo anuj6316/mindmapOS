@@ -60,7 +60,7 @@ export default function DocsNav({ onSelect }: DocsNavProps) {
                 href={`#${section.id}`}
                 className={`block px-4 py-2.5 rounded-xl text-[13px] font-medium transition-all ${
                   activeSection === section.id
-                    ? 'text-sky-700 bg-sky-50/50 shadow-sm'
+                    ? 'text-[#00A651] bg-emerald-50/50 shadow-sm'
                     : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
                 }`}
                 onClick={(e) => {

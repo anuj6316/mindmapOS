@@ -104,7 +104,7 @@ export default function ChatApp() {
     <div className="flex h-screen bg-[#F8FAFC] overflow-hidden text-slate-800 font-sans selection:bg-sky-100 selection:text-sky-900 relative">
       {/* Ambient Background Gradients */}
       <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-sky-200/50 rounded-full blur-[120px] pointer-events-none mix-blend-multiply" />
-      <div className="absolute top-[20%] right-[-10%] w-[40vw] h-[60vw] bg-blue-200/40 rounded-full blur-[120px] pointer-events-none mix-blend-multiply" />
+      <div className="absolute top-[20%] right-[-10%] w-[40vw] h-[60vw] bg-emerald-200/40 rounded-full blur-[120px] pointer-events-none mix-blend-multiply" />
       <div className="absolute bottom-[-10%] left-[20%] w-[60vw] h-[50vw] bg-sky-200/30 rounded-full blur-[120px] pointer-events-none mix-blend-multiply" />
 
       {/* Navigation */}
