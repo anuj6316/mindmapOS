@@ -7,9 +7,11 @@ interface ProductDetailModalProps {
   product: Product | null;
   isOpen: boolean;
   onClose: () => void;
+  onAdd: (product: Product) => void;
+  isInstalled?: boolean;
 }
 
-export default function ProductDetailModal({ product, isOpen, onClose }: ProductDetailModalProps) {
+export default function ProductDetailModal({ product, isOpen, onClose, onAdd, isInstalled = false }: ProductDetailModalProps) {
   const [activeTab, setActiveTab] = React.useState('Overview');
 
   if (!product) return null;
@@ -244,8 +246,16 @@ export default function ProductDetailModal({ product, isOpen, onClose }: Product
                  <div className="flex items-center justify-between text-3xl font-bold text-slate-900">
                    {isFree ? <span className="text-emerald-600">FREE</span> : product.price}
                  </div>
-                 <button className="w-full py-5 rounded-[20px] bg-sky-500 text-white font-bold text-[16px] shadow-xl shadow-sky-500/25 hover:bg-sky-600 hover:-translate-y-0.5 transition-all">
-                   Add to MindMapOS
+                 <button
+                   onClick={() => onAdd(product)}
+                   disabled={isInstalled}
+                   className={`w-full py-5 rounded-[20px] text-white font-bold text-[16px] shadow-xl transition-all ${
+                     isInstalled
+                       ? 'bg-emerald-500/80 shadow-emerald-500/10 cursor-default'
+                       : 'bg-sky-500 shadow-sky-500/25 hover:bg-sky-600 hover:-translate-y-0.5'
+                   }`}
+                 >
+                   {isInstalled ? 'Added to My Agents' : 'Add to MindMapOS'}
                  </button>
               </div>
 
